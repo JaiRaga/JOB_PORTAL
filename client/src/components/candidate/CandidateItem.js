@@ -2,6 +2,7 @@ import React from 'react'
 import { Grid, Paper, makeStyles, Typography, Avatar, Button } from "@material-ui/core"
 import { useDispatch } from 'react-redux'
 import { shortlistCandidate, rejectCandidate } from '../../redux/actions/candidate'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -24,6 +25,17 @@ const useStyles = makeStyles(theme => ({
 const CandidatesItem = ({ candidate }) => {
     const classes = useStyles()
     const dispatch = useDispatch()
+    const history = useHistory()
+
+    const shortlist = () => {
+        dispatch(shortlistCandidate(candidate._id))
+        history.push("/home")
+    }
+
+    const reject = () => {
+        dispatch(rejectCandidate(candidate._id))
+        history.push("/home")
+    }
 
     return (
 
@@ -41,8 +53,8 @@ const CandidatesItem = ({ candidate }) => {
                         </Grid>
                     </Grid>
                     <Grid item className={classes.btn}>
-                        <Button color="primary" onClick={() => dispatch(shortlistCandidate(candidate._id))}>Shortlist</Button>
-                        <Button color="secondary" onClick={() => dispatch(rejectCandidate(candidate._id))}>Reject</Button>
+                        <Button color="primary" onClick={shortlist}>Shortlist</Button>
+                        <Button color="secondary" onClick={reject}>Reject</Button>
                     </Grid>
                 </Paper>
             </Grid>
