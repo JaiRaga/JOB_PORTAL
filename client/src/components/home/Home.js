@@ -1,11 +1,14 @@
 import React from 'react'
+import { Grid } from "@material-ui/core"
 import Candidates from "../candidate/Candidates"
 
 const Home = () => {
     return (
-        <div>
-            Home
-        </div>
+        <Grid container justify="center" alignItems="center">
+            {/* <Grid item> */}
+            <Candidates />
+            {/* </Grid> */}
+        </Grid>
     )
 }
 

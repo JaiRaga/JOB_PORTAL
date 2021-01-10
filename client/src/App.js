@@ -6,21 +6,23 @@ import { Provider } from "react-redux";
 import Home from "./components/home/Home"
 import Candidates from "./components/candidate/Candidates"
 import CandidateItem from "./components/candidate/CandidateItem"
+import CandidateProfile from "./components/candidate/CandidateProfile"
+import ShortListed from "./components/candidate/ShortListed";
+import Rejected from "./components/candidate/Rejected";
+import Navbar from "./components/layout/Navbar"
+import Drawer from "./components/layout/Drawer"
 
 // Redux
 import store from "./redux/store";
+import { getAllCandidates, getShortlistedCandidate, getRejectedCandidate } from "./redux/actions/candidate";
 
 
-// utils
-import setAuthToken from "./utils/setAuthToken";
-
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
 
 function App() {
   useEffect(() => {
-    // store.dispatch(loadUser());
+    store.dispatch(getAllCandidates());
+    store.dispatch(getShortlistedCandidate());
+    store.dispatch(getRejectedCandidate());
   }, []);
 
   // console.log(moment(moment() + 36e5 * 5).twitter());
@@ -29,14 +31,14 @@ function App() {
     <Provider store={store}>
       <Router>
         <Fragment>
-          {/* <Navbar />
-          <Drawer /> */}
+          <Navbar />
+          <Drawer />
 
           <Switch>
             <Route exact path='/home' component={Home} />
-            <Route exact path='/candidate/:id' component={CandidateItem} />
-            <Route exact path='/shortlisted' component={Candidates} />
-            <Route exact path='/rejected' component={Candidates} />
+            <Route exact path='/candidate/:id' component={CandidateProfile} />
+            <Route exact path='/shortlisted' component={ShortListed} />
+            <Route exact path='/rejected' component={Rejected} />
 
 
             {/* <Route exact path='/register' component={Register} />

@@ -1,4 +1,9 @@
 // Job Portal
-
-
-
+export const GET_CANDIDATES = 'GET_CANDIDATES'
+export const GET_CANDIDATE = 'GET_CANDIDATE'
+export const POST_CANDIDATE = 'POST_CANDIDATE'
+export const POST_SHORTLIST = 'POST_SHORTLIST'
+export const POST_REJECT = 'POST_REJECT'
+export const GET_SHORTLISTED = 'GET_SHORTLISTED'
+export const GET_REJECTED = 'GET_RREJECTED'
+export const CANDIDATE_ERROR = 'CANDIDATE_ERROR'
