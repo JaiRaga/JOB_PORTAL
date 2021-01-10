@@ -45,14 +45,14 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 shortlisted: [...payload, ...state.shortlisted],
-                rejected: state.rejected.filter(reject => reject._id === payload._id),
+                rejected: state.rejected.filter(reject => reject._id !== payload._id),
                 loading: false
             }
 
         case POST_REJECT:
             return {
                 ...state,
-                shortlisted: state.shortlisted.filter(shortlist => shortlist._id === payload._id),
+                shortlisted: state.shortlisted.filter(shortlist => shortlist._id !== payload._id),
                 rejected: [...payload, ...state.rejected],
                 loading: false
             }
