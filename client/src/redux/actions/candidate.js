@@ -70,6 +70,7 @@ export const shortlistCandidate = (id) => async dispatch => {
     try {
         const res = await axios.patch(`/api/shortlist/${id}`, config)
         dispatch({ type: POST_SHORTLIST, payload: res.data })
+        rejectCandidate()
     } catch (err) {
         dispatch({ type: CANDIDATE_ERROR })
     }
@@ -83,8 +84,12 @@ export const rejectCandidate = (id) => async dispatch => {
     }
 
     try {
+        console.log("rrrrrrr1")
         const res = await axios.patch(`/api/reject/${id}`, config)
+        console.log("rrrrrrr2")
         dispatch({ type: POST_REJECT, payload: res.data })
+        console.log("rrrrrrr3")
+        shortlistCandidate()
     } catch (err) {
         dispatch({ type: CANDIDATE_ERROR })
     }
